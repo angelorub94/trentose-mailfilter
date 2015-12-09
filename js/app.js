@@ -1,5 +1,3 @@
-/* your code should go here */
-
 var tmpl = '<li>MAIL</li>';
 
 // You can modify this object, add functions that you need
@@ -13,10 +11,8 @@ var MailModel = {
      this.messages = msgs;
    }, 
   
-   /**
-    * Filters out messages in the "database" that match the spam rules.
-    * @return an array of messages, excluding those that match the filter rules.
-    */
+   /**Filters out messages in the "database" that match the spam rules.
+    * @return an array of messages, excluding those that match the filter rules.*/
     filter : function(){
         var lista = [];
         for(var i=0; i<this.messages.length;i++){
@@ -32,8 +28,6 @@ var MailModel = {
         }      
         return lista;
     }
-
-  
 };
 
 var controller = {
@@ -58,8 +52,7 @@ var controller = {
     }
 };
 
-var view = {
-    
+var view = {  
     renderAllMail: function(){
         for(var i=0; i<controller.getMsgslength(); i++){
             var tmpl2 = tmpl.replace("MAIL", controller.getMsg(i));
@@ -72,27 +65,16 @@ var view = {
            controller.filter(); 
         });
     },
-    
+   
     renderFilteredMail: function(list){
         $(".allmails").hide();
+        $(".result").html("");
         for(var i = 0; i< list.length ;i++){
             var tmpl2 = tmpl.replace("MAIL", list[i]);
             $(".result").append(tmpl2);
-        }
-        
+        }       
     }
 };
-
-// Example of usage:
-// MailModel.init()
-// MailModel.filter() 
-//  -> ["carlo@gmail.com", "trentose2@googlegroups.com"]
-
-
-// We suggest to use js patters. 
-// you can add here your views and controllers if you decide to do so.
-
-
 
 $(document).ready(function(){
     controller.init();
